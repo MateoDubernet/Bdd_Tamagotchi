@@ -20,6 +20,7 @@ DataBase::createTable([
     "column_soif" => "soif SMALLINT NOT NULL,",
     "column_sommeil" => "sommeil SMALLINT NOT NULL,",
     "column_ennui" => "ennui SMALLINT NOT NULL,",
+    "column_etat" => "etat VARCHAR(30) NOT NULL,",
     "column_user_id" => "user_id BIGINT NOT NULL, CONSTRAINT FK_user_tamgo FOREIGN KEY (user_id) REFERENCES users(id)"
 ]);
 
@@ -34,7 +35,8 @@ $tamagoColumns = [
     "column4" => "soif,",
     "column5" => "sommeil,",
     "column6" => "ennui,",
-    "column7" => "user_id",
+    "column7" => "etat,",
+    "column8" => "user_id",
 ];
 
 function isUserExist(string $selectUser){
@@ -63,6 +65,7 @@ if ($_POST) {
             "column_soif" => 70 . ",",
             "column_sommeil" => 70 . ",",
             "column_ennui" => 70 . ",",
+            "column_etat" => "'vivant',",
             "column_user_id" => "(SELECT id FROM users WHERE name='$username')"
         ]);
         
