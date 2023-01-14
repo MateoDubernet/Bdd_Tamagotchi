@@ -15,6 +15,7 @@ DataBase::createTable([
     "table_name" => "tamago",
     "column_id" => "id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,",
     "column_name" => "name VARCHAR(30) NOT NULL,",
+    "column_niveaux" => "niveaux SMALLINT NOT NULL,",
     "column_faim" => "faim SMALLINT NOT NULL,",
     "column_soif" => "soif SMALLINT NOT NULL,",
     "column_sommeil" => "sommeil SMALLINT NOT NULL,",
@@ -28,11 +29,12 @@ $userColumns = [
 
 $tamagoColumns = [
     "column1" => "name,",
-    "column2" => "faim,",
-    "column3" => "soif,",
-    "column4" => "sommeil,",
-    "column5" => "ennui,",
-    "column6" => "user_id",
+    "column2" => "niveaux,",
+    "column3" => "faim,",
+    "column4" => "soif,",
+    "column5" => "sommeil,",
+    "column6" => "ennui,",
+    "column7" => "user_id",
 ];
 
 function isUserExist(string $selectUser){
@@ -56,6 +58,7 @@ if ($_POST) {
         DataBase::insertData('users', $userColumns, ["column_name" => "'$username'"]);
         DataBase::insertData('tamago', $tamagoColumns, [
             "column_name" => "'$faker->firstName',",
+            "column_niveaux" => 1 . ",",
             "column_faim" => 70 . ",",
             "column_soif" => 70 . ",",
             "column_sommeil" => 70 . ",",
