@@ -1,15 +1,38 @@
 <?php 
 require '../bdd/database.php';
+require_once '../vendor/autoload.php';
+
+$faker = Faker\Factory::create('fr_FR');
 
 DataBase::useDataBase('tamagotchi');
 DataBase::createTable([
     "table_name" => "users",
     "column_id" => "id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,",
-    "column_name" => "name VARCHAR(30) NOT NULL",
+    "column_name" => "name VARCHAR(30) NOT NULL"
 ]);
 
-$columns = [
+DataBase::createTable([
+    "table_name" => "tamago",
+    "column_id" => "id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,",
+    "column_name" => "name VARCHAR(30) NOT NULL,",
+    "column_faim" => "faim SMALLINT NOT NULL,",
+    "column_soif" => "soif SMALLINT NOT NULL,",
+    "column_sommeil" => "sommeil SMALLINT NOT NULL,",
+    "column_ennui" => "ennui SMALLINT NOT NULL,",
+    "column_user_id" => "user_id BIGINT NOT NULL, CONSTRAINT FK_user_tamgo FOREIGN KEY (user_id) REFERENCES users(id)"
+]);
+
+$userColumns = [
     "column1" => "name",
+];
+
+$tamagoColumns = [
+    "column1" => "name,",
+    "column2" => "faim,",
+    "column3" => "soif,",
+    "column4" => "sommeil,",
+    "column5" => "ennui,",
+    "column6" => "user_id",
 ];
 
 function isUserExist(string $selectUser){
@@ -29,8 +52,18 @@ function isUserExist(string $selectUser){
 
 if ($_POST) {
     if (!isUserExist($_POST['username'])) {
+        $username = $_POST['username'];
+        DataBase::insertData('users', $userColumns, ["column_name" => "'$username'"]);
+        DataBase::insertData('tamago', $tamagoColumns, [
+            "column_name" => "'$faker->firstName',",
+            "column_faim" => 70 . ",",
+            "column_soif" => 70 . ",",
+            "column_sommeil" => 70 . ",",
+            "column_ennui" => 70 . ",",
+            "column_user_id" => "(SELECT id FROM users WHERE name='$username')"
+        ]);
+        
         unset($_POST);
-        DataBase::insertData('users', $columns, $_POST);
         header('Location: ' .  '/connexion/login.php');
     } else {
         header('Location: ' .  '/connexion/register.php');

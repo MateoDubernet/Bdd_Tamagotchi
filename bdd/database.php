@@ -53,15 +53,15 @@ class DataBase {
         try {
             $pdo = self::connect();
             $sql = sprintf("CREATE TABLE IF NOT EXISTS %s (", $table["table_name"]);
+
             unset($table["table_name"]);
             foreach($table as $column) {
                 $sql .= sprintf("%s", $column);
             }
             $sql .= ")";
-
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-
+            
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -88,11 +88,13 @@ class DataBase {
             $sql .= ") VALUES (";
 
             foreach($values as $value) {
-                $sql .= sprintf("'%s'", $value);
+                $sql .= sprintf("%s", $value);
             }
             $sql .= ")";
 
+            echo '<pre>';
             echo $sql;
+            echo '</pre>';
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
