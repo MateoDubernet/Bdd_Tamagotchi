@@ -1,6 +1,7 @@
 <?php 
 require '../bdd/database.php';
 require_once '../vendor/autoload.php';
+require '../tamagotchi/pdo.php';
 
 $faker = Faker\Factory::create('fr_FR');
 
@@ -77,13 +78,12 @@ if ($_POST) {
 
 }
 
-if ($_GET) {
-    if (isUserExist($_GET['username'])) {
-        unset($_GET);
-        header('Location: ' .  '../tamagotchi/tamagotchi.php');
+if (isset($_GET) && isset($_GET['username']) ) {
+    $username = $_GET['username'];
+    if (isUserExist($username)) {
+        header('Location: ' .  '../tamagotchi/tamagotchi.php?username='.$username);
     } else {
         header('Location: ' .  '/connexion/login.php');
     }
 }
-
 ?>
