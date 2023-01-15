@@ -1,0 +1,66 @@
+#bg-image {
+    background-image: url("../assets/bg-image.png");
+    position: absolute;
+    width: 1280px;
+    height: 615px;
+    left: 0px;
+    top: 0px;
+    background-size: cover;
+}
+
+#tamagochi-land {
+    position: absolute;
+    width: 580px;
+    height: 90px;
+    left: -150px;
+    top: 260px;
+    margin: 0;
+
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 35px;
+    text-align: center;
+
+    color: #D36245;
+
+    transform: rotate(-90deg);
+}
+
+#bouton-creer{
+    position: absolute;
+    width: 354px;
+    height: 74px;
+    left: 900px;
+    top: 246px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#bouton-voir{
+    position: absolute;
+    width: 354px;
+    height: 74px;
+    left: 900px;
+    top: 135px;
+    
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#username {
+    position: absolute;
+    width: 439px;
+    height: 65px;
+    left: 773px;
+    top: 70px;
+
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #000000;
+}

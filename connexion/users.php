@@ -80,7 +80,7 @@ if ($_POST) {
 if ($_GET) {
     if (isUserExist($_GET['username'])) {
         unset($_GET);
-        header('Location: ' .  '/tamagotchi.php');
+        header('Location: ' .  '../tamagotchi/tamagotchi.php');
     } else {
         header('Location: ' .  '/connexion/login.php');
     }
