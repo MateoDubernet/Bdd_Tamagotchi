@@ -14,6 +14,7 @@
             "column6" => "ennui,",
             "column7" => "etat,",
             "column8" => "user_id",
+            "column9" => "born_at",
         ];
     }
     

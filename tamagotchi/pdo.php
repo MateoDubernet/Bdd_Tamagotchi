@@ -230,6 +230,8 @@ function TamagoUpdate($username, $tamago_id, $niveaux, $faim, $soif, $sommeil, $
 
 function TamagoInsert($name) 
 {
+    $now = new DateTime();
+    $born_at = $now->format('Y-m-d H:i:s');
     $tamago = new Tamago();
     $tamago->name = $name;
     $tamago->niveaux = 1;
@@ -240,6 +242,7 @@ function TamagoInsert($name)
     $tamago->etat = "vivant";
     $tamago->user_id = User::findByName($_GET['username'])->id;
     $tamago->actions = 0;
+    $tamago->born_at = $born_at;
     $tamago->save();
 }
 

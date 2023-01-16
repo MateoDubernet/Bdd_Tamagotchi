@@ -48,6 +48,7 @@ if(isset($_GET['username'])){
     </head>
     <body>
         <h1 style="text-align:center">Mes Tamagos</h1>
+        <div><a href=<?php $link="./tamagotchi.php?username=".$username; echo $link?> >Home</a></div>
         <div class="tamago-container">
             <?php
                 if(!empty($tamagos)){
