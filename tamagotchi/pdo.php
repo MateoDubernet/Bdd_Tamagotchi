@@ -45,7 +45,7 @@ abstract class Model
     public static function find(int $id) : ?static
     {
         $pdo = self::getDatabase();
-        $stmt = $pdo->prepare(sprintf("SELECT * FROM %s WHERE %s = :id", static::$table, static::$id));
+        $stmt = $pdo->prepare(sprintf("SELECT * FROM %s WHERE %s = $id", static::$table, static::$id));
         $stmt->bindValue("id", $id, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::class);
@@ -127,7 +127,7 @@ class Tamago extends Model {
     public static string $id = "id";
     public static string $name = "name";
     public static array $columns = [
-        "id", "name", "niveaux", "faim", "soif", "sommeil", "ennui", "etat", "user_id"
+        "id", "name", "niveaux", "faim", "soif", "sommeil", "ennui", "etat", "user_id", "actions", "born_at", "died_at"
     ];
     public static function findByUserId(int $user_id) : array
     {
@@ -162,17 +162,70 @@ function TamagoFind($tamago_id)
     return ($tamago);
 }
 
-function TamagoUpdate($tamago_id, $niveaux, $faim, $soif, $sommeil, $ennui, $etat) 
+function TamagoUpdate($username, $tamago_id, $niveaux, $faim, $soif, $sommeil, $ennui, $etat) 
 {
-    $tamago = Tamago::find($tamago_id);
-    $tamago->update([
-        "niveaux" => $niveaux,
-        "faim" => $faim,
-        "soif" => $soif,
-        "sommeil" => $sommeil,
-        "ennui" => $ennui,
-        "etat" => $etat
-    ]);
+    $user = UserFindByName($username);
+    $user_id = $user->id;
+    $tamagos = TamagoFindByUserId(intval($user_id));
+    if(!empty($tamagos)){
+        foreach($tamagos as $myTamago):
+            if($myTamago->id == $tamago_id)
+            {
+                if($myTamago->actions == 9)
+                {
+                    $actions = 0;
+                    $niveau = $myTamago->niveaux + 1;
+                }
+                else {
+                    $actions = $myTamago->actions + 1;
+                    $niveau = $myTamago->niveaux;
+                }
+                if($faim <= 0)
+                {
+                    $faim = 0;
+                }
+                if($soif <= 0)
+                {
+                    $soif = 0;
+                }
+                if($ennui <= 0)
+                {
+                    $ennui = 0;
+                }
+                if($sommeil <= 0)
+                {
+                    $sommeil = 0;
+                }
+                if($faim == 0 || $soif == 0 || $ennui == 0 || $sommeil == 0)
+                {
+                    $etat = "mort";
+                    $now = new DateTime();
+                    $died_at = $now->format('Y-m-d H:i:s');
+                    try {
+                        $myTamago->update([
+                            "died_at" => $died_at
+                        ]);
+                    } catch (PDOException $th) {
+                        echo($th -> getMessage());
+                        
+                    }
+                    
+                }
+                $myTamago->update([
+                    "niveaux" => $niveau,
+                    "faim" => $faim,
+                    "soif" => $soif,
+                    "sommeil" => $sommeil,
+                    "ennui" => $ennui,
+                    "etat" => $etat, 
+                    "actions" => $actions
+                    ]);
+            }
+        endforeach;
+    }
+
+
+    //$tamago = Tamago::find($tamago_id);
 }
 
 function TamagoInsert($name) 
@@ -185,7 +238,8 @@ function TamagoInsert($name)
     $tamago->sommeil = 70;
     $tamago->ennui = 70;
     $tamago->etat = "vivant";
-    $tamago->user_id = User::findByName($_GET['username']);
+    $tamago->user_id = User::findByName($_GET['username'])->id;
+    $tamago->actions = 0;
     $tamago->save();
 }
 
@@ -209,4 +263,106 @@ function TamagoFindByUserId($user_id)
 {
     $tamago = Tamago::findByUserId($user_id);
     return($tamago);
+}
+function TamagoEat($tamago_id, $username)
+{
+    $user = UserFindByName($username);
+    $user_id = $user->id;
+    $tamagos = TamagoFindByUserId(intval($user_id));
+    if(!empty($tamagos)){
+        foreach($tamagos as $myTamago):
+            if($myTamago->id == $tamago_id)
+            {
+                $soif = $myTamago->soif - 10;
+                $sommeil = $myTamago->sommeil - 5;
+                $ennui = $myTamago->ennui - 5;
+                if($myTamago->faim<=80)
+                {
+                    $faim = $myTamago->faim + 30;
+                    if($faim>= 100)
+                    {
+                        $faim = 100;
+                    }
+                    TamagoUpdate($username, $myTamago->id, $myTamago->niveau, $faim, $soif, $sommeil, $ennui, $myTamago->etat);
+                }
+            } 
+        endforeach;
+    }
+}
+
+function TamagoDrink($tamago_id, $username)
+{   
+    $user = UserFindByName($username);
+    $user_id = $user->id;
+    $tamagos = TamagoFindByUserId(intval($user_id));
+    if(!empty($tamagos)){
+        foreach($tamagos as $myTamago):
+            if($myTamago->id == $tamago_id)
+            {
+                $faim = $myTamago->faim - 10;
+                $sommeil = $myTamago->sommeil - 5;
+                $ennui = $myTamago->ennui - 5;
+                if($myTamago->soif<=80)
+                {
+                    $soif = $myTamago->soif + 30;
+                    if($soif>= 100)
+                    {
+                        $soif = 100;
+                    }
+                    TamagoUpdate($username, $myTamago->id, $myTamago->niveaux, $faim, $soif, $sommeil, $ennui, $myTamago->etat);
+                }
+            } 
+        endforeach;
+    }
+    //$tamago = Tamago::find($tamago_id);
+}
+
+function TamagoSleep($tamago_id, $username)
+{
+    //$tamago = Tamago::find($tamago_id);
+    $user = UserFindByName($username);
+    $user_id = $user->id;
+    $tamagos = TamagoFindByUserId(intval($user_id));
+    if(!empty($tamagos)){
+        foreach($tamagos as $myTamago):
+            if($myTamago->id == $tamago_id)
+            {
+                $faim = $myTamago->faim - 10;
+                $soif = $myTamago->soif - 15;
+                $ennui = $myTamago->ennui - 15;
+                if($myTamago->sommeil<=80)
+                {
+                    $sommeil = $myTamago->sommeil + 30;
+                    if($sommeil>= 100)
+                    {
+                        $sommeil = 100;
+                    }
+                    TamagoUpdate($username, $myTamago->id, $myTamago->niveaux, $faim, $soif, $sommeil, $ennui, $myTamago->etat);
+                }
+            }
+        endforeach;
+    }
+}
+
+function TamagoPlay($tamago_id, $username)
+{
+    //$tamago = Tamago::find($tamago_id);
+    $user = UserFindByName($username);
+    $user_id = $user->id;
+    $tamagos = TamagoFindByUserId(intval($user_id));
+    if(!empty($tamagos)){
+        foreach($tamagos as $myTamago):
+            if($myTamago->id == $tamago_id)
+            {
+                $faim = $myTamago->faim - 5;
+                $soif = $myTamago->soif - 5;
+                $sommeil = $myTamago->sommeil -5;
+                if($myTamago->ennui<=80)    
+                {
+                    $ennui = $myTamago->ennui + 15;
+                    TamagoUpdate($username, $myTamago->id, $myTamago->niveaux, $faim, $soif, $sommeil, $ennui, $myTamago->etat);
+                }
+            }
+        endforeach;
+    }
 }

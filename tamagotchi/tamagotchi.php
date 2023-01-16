@@ -17,7 +17,11 @@
         <div id="bg-image">
             <div id="tamagochi-land"><p>Tamagotchi Land</p></div>
             <div><p id="username">Welcome, <?php if(isset($_GET['username'])) $username = $_GET['username']; echo $username ?>!</p></div>
-            <div><img src="../assets/creer_tamagochi.png" id="bouton-creer"></img></div>
+            <div>
+                <a href="<?php $link = './create_tamagotchi.php?username='.$username; echo $link; ?>">
+                <img src="../assets/creer_tamagochi.png" id="bouton-creer"></img>
+                </a>
+            </div>
             <div>
                 <a href="<?php $link = './tamagotchiList.php?username='.$username; echo $link; ?>">
                     <img src="../assets/voir_tamagochi.png" id="bouton-voir"></img>

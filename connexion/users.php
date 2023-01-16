@@ -22,7 +22,10 @@ DataBase::createTable([
     "column_sommeil" => "sommeil SMALLINT NOT NULL,",
     "column_ennui" => "ennui SMALLINT NOT NULL,",
     "column_etat" => "etat VARCHAR(30) NOT NULL,",
-    "column_user_id" => "user_id BIGINT NOT NULL, CONSTRAINT FK_user_tamgo FOREIGN KEY (user_id) REFERENCES users(id)"
+    "column_user_id" => "user_id BIGINT NOT NULL, CONSTRAINT FK_user_tamgo FOREIGN KEY (user_id) REFERENCES users(id),",
+    "column_actions" => "actions SMALLINT NOT NULL,", 
+    "column_born_at" => "born_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,", 
+    "column_died_at" => "died_at TIMESTAMP NULL"
 ]);
 
 $userColumns = [
@@ -38,6 +41,9 @@ $tamagoColumns = [
     "column6" => "ennui,",
     "column7" => "etat,",
     "column8" => "user_id",
+    "column9" => "actions",
+    "column10" => "born_at",
+    "column11" => "died_at"
 ];
 
 function isUserExist(string $selectUser){
@@ -67,7 +73,9 @@ if ($_POST) {
             "column_sommeil" => 70 . ",",
             "column_ennui" => 70 . ",",
             "column_etat" => "'vivant',",
-            "column_user_id" => "(SELECT id FROM users WHERE name='$username')"
+            "column_user_id" => "(SELECT id FROM users WHERE name='$username')", 
+            "column_actions" => 0 . ",",
+
         ]);
         
         unset($_POST);

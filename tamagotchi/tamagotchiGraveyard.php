@@ -47,28 +47,19 @@ if(isset($_GET['username'])){
         <title>My Tamagos</title>
     </head>
     <body>
-        <h1 style="text-align:center">Mes Tamagos</h1>
+        <h1 style="text-align:center">Mon cimetière</h1>
         <div class="tamago-container">
             <?php
                 if(!empty($tamagos)){
                     foreach($tamagos as $myTamago):
-                        if($myTamago->etat == "vivant"){
+                        if($myTamago->etat == "mort"){
                             echo (
                                 "<div class='tamago-card'>".
                                     "<div class='tamago-card-body'>" .
-                                        "<p class='tamago-card-text'> Id: " . $myTamago->id . "</p>" .
-                                        "<p class='tamago-card-text'> Name: " . $myTamago->name . "</p>" .
+                                        "<p class='tamago-card-text'> Ici repose: " . $myTamago->name . "</p>" .
                                         "<p class='tamago-card-text'> Niveau: " . $myTamago->niveaux . "</p>" .
-                                        "<p class='tamago-card-text'> Faim: " . $myTamago->faim . "</p>" .
-                                        "<p class='tamago-card-text'> Soif: " . $myTamago->soif . "</p>" .
-                                        "<p class='tamago-card-text'> Ennui: " . $myTamago->ennui . "</p>" .
-                                        "<p class='tamago-card-text'> Sommeil: " . $myTamago->sommeil . "</p>" .
-                                        "<p class='tamago-card-text'> Etat: " . $myTamago->etat . "</p>" .
-                                        "<p class='tamago-card-text'> Actions: " . $myTamago->actions . "</p>" .
-                                        "<a href='./manger.php?tamago_id=".$myTamago->id."&username=".$username."'><button class='button-14' type='button'>Manger</button></a>".
-                                        "<a href='./boire.php?tamago_id=".$myTamago->id."&username=".$username."'><button class='button-14' type='button'>Boire</button></a>".
-                                        "<a href='./sleep.php?tamago_id=".$myTamago->id."&username=".$username."'><button class='button-14' type='button'>Dormir</button></a>".
-                                        "<a href='./play.php?tamago_id=".$myTamago->id."&username=".$username."'><button class='button-14' type='button'>Jouer</button></a>".
+                                        "<p class='tamago-card-text'> Né le: " . $myTamago->born_at . "</p>" .
+                                        "<p class='tamago-card-text'> Mort le: " . $myTamago->died_at . "</p>" .
                                     "</div>" .
                                 "</div>"
                             );
@@ -77,6 +68,6 @@ if(isset($_GET['username'])){
                 }
             ?>
         </div>
-        <div><a href=<?php $link = "./tamagotchiGraveyard.php?username=".$username; echo $link;?>>Visiter le cimetière ? </a></div>
+        <div><a href=<?php $link = "./tamagotchiList.php?username=".$username; echo $link;?>>Terminer la visite ? </a></div>
     </body>
 </html>

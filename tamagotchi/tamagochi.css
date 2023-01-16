@@ -64,3 +64,95 @@
 
     color: #000000;
 }
+
+.tamago-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.tamago-card {
+    width: 300px;
+    height: 450px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #ccc;
+    text-align: center;
+    padding: 20px;
+}
+
+.tamago-card h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.tamago-card p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tamago-card img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.tamago-card .status {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tamago-card .status .status-name {
+    font-size: 18px;
+}
+
+.tamago-card .status .status-value {
+    font-size: 18px;
+}
+
+.button-14 {
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 14px;
+  height: 29px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-14:active {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-14:active:hover {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-14:hover {
+  border-color: #a2a6ac #979aa1 #82858a;
+}
+
+.button-14:focus {
+  border-color: #e77600;
+  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  outline: 0;
+}
