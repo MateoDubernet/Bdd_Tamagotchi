@@ -1,4 +1,8 @@
 # Tamagotchi
+Application de gestion de Tamagotchi(animal de compagnie virtuel).
+
+---
+
 ## Installation
 Installe les dépendances:
 ```bash
