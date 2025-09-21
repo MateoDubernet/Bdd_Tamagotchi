@@ -14,8 +14,8 @@ abstract class Model
             $config = [
                 "host" => "localhost",
                 "port" => 3306,
-                "username" => "cheikhoul",
-                "password" => "09121968.",
+                "username" => "root",
+                "password" => "root",
                 "engine" => "mysql",
                 "database" => "tamagotchi"
             ];
@@ -129,6 +129,7 @@ class Tamago extends Model {
     public static array $columns = [
         "id", "name", "niveaux", "faim", "soif", "sommeil", "ennui", "etat", "user_id", "actions", "born_at", "died_at"
     ];
+
     public static function findByUserId(int $user_id) : array
     {
         $pdo = Model::getDatabase();

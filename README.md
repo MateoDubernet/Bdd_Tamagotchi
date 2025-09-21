@@ -1,7 +1,21 @@
-Install faker with composer require fakerphp/faker 
+# Tamagotchi
+## Installation
+Installe les dépendances:
+```bash
+    composer install
+```
 
-In file bdd/database.php($configBdd) and tamagotchi/pdo.php(getDatabase()) change the database connexion information
+---
 
-Run project with command "php -S localhost:8000" or with a Solution Stack
+## Configuration
+Dans le fichier bdd/database.php ($configBdd) et tamagotchi/pdo.php (getDatabase()) changer les informations de connexions à la base de données avec celles adapter à la votre.
 
-When project is run go to url: localhost:<your_port>/connexion/login
+---
+
+## Lancement
+Lancer le projet avec la commande:
+```bash
+    php -S localhost:8000 -t .
+```
+
+Une fois le projet lancer, entrer dans le navigateur l'adresse suivante: localhost:8000/connexion/login.php

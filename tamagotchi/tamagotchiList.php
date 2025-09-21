@@ -28,7 +28,7 @@ if ($_POST) {
 if(isset($_GET['username'])){
     $username = $_GET['username'];
     $user_id = UserFindByName($username)->id;
-    $tamagos = TamagoFindByUserId(intval($user_id)); 
+    $tamagos = TamagoFindByUserId(intval($user_id));
  }
 ?>
 <!DOCTYPE html>

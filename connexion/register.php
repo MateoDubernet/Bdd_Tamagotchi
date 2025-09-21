@@ -1,10 +1,10 @@
-<?php require '../header.php' ?>
+<?php require __DIR__ . '/../header.php' ?>
 
 <div class="container ">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <div class="account-wall">
-            <h1 class="text-center login-title">Créer un compte</h1>
+            <h1 class="text-center authentication-title">Créer un compte</h1>
                 <form action="/connexion/users.php" method="POST" class="form-signin">
                     <div class="form-section">
                         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus />
@@ -17,5 +17,4 @@
     </div>
 </div>
 
-
-<?php require '../footer.php' ?>
+<?php require __DIR__ . '/../footer.php' ?>
