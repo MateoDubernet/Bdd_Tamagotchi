@@ -1,5 +1,5 @@
 # Tamagotchi
-Application de gestion de Tamagotchi(animal de compagnie virtuel).
+Application de gestion de Tamagotchi (animal de compagnie virtuel).
 
 ---
 
