@@ -22,4 +22,4 @@ Lancer le projet avec la commande:
     php -S localhost:8000 -t .
 ```
 
-Une fois le projet lancer, entrer dans le navigateur l'adresse suivante: localhost:8000/connexion/login.php
+Une fois le projet lancer, entrer dans le navigateur l'adresse suivante: localhost:8000

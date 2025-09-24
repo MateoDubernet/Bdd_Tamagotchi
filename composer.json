@@ -1,5 +1,12 @@
 {
     "require": {
         "fakerphp/faker": "^1.21"
+    },
+    "autoload": {
+        "psr-4": {
+            "Models\\": "models/",
+            "Services\\": "services/",
+            "Database\\": "database/"
+        }
     }
 }
