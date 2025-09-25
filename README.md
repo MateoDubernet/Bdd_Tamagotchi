@@ -1,10 +1,17 @@
-# Tamagotchi
-Application de gestion de Tamagotchi (animal de compagnie virtuel).
+# Tamagotchi - Gestion et Interactions
+
+Ce projet est une implémentation en PHP d'un système de **Tamagotchi virtuel**.  
+Chaque utilisateur peut créer, gérer et interagir avec son Tamagotchi, qui possède différents états et peut évoluer ou mourir en fonction de ses besoins.
 
 ---
 
 ## Installation
-Installe les dépendances:
+1. **Cloner le projet :**
+```bash
+   git clone https://github.com/ton-projet/tamagotchi.git
+   cd tamagotchi
+```
+2. **Installer les dépendances:**
 ```bash
     composer install
 ```
