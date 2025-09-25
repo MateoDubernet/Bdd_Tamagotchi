@@ -1,7 +1,7 @@
 # Tamagotchi - Gestion et Interactions
 
 Ce projet est une implémentation en PHP d'un système de **Tamagotchi virtuel**.  
-Chaque utilisateur peut créer, gérer et interagir avec son Tamagotchi, qui possède différents états.
+Chaque utilisateur peut créer, gérer et interagir avec son Tamagotchi qui possède différents états.
 
 ---
 
