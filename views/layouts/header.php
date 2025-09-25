@@ -13,7 +13,7 @@ if (!isset($pageTitle)) {
         <!-- CSS -->
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="../styles/tamagochi.css" rel="stylesheet">
-        <link href="../styles/styles.css" rel="stylesheet">
+        <link href="../styles/authentification.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
         <!-- JS -->

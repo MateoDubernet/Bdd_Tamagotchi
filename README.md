@@ -34,7 +34,6 @@ Une fois le projet lancer, entrer dans le navigateur l'adresse suivante: localho
 ---
 
 ## Utilisation
-
 ### 1. Authentification
 Un utilisateur doit s’authentifier pour pouvoir créer ou interagir avec un Tamagotchi.
 

@@ -6,7 +6,7 @@ if (!isset($_GET['username'])) {
 }
 
 $username = $_GET['username'];
-$pageTitle = "Tamagotchi Land";
+$pageTitle = "";
 
 include __DIR__ . '/../views/layouts/header.php';
 ?>
