@@ -36,8 +36,8 @@ include __DIR__ . '/../views/layouts/header.php';
         <p style="text-align:center">Aucun Tamagotchi mort pour le moment.</p>
     <?php endif; ?>
 </div>
-<div>
-    <a href="tamagotchiList.php?username=<?= urlencode($username) ?>">Retour aux vivants</a>
+<div class="tamagotchiList-link-section">
+    <a class="tamagotchiList-link" href="tamagotchiList.php?username=<?= urlencode($username) ?>">Retour aux vivants</a>
 </div>
 
 <?php include __DIR__ . '/../views/layouts/footer.php'; ?>

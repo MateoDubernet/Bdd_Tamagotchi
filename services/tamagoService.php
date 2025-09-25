@@ -5,6 +5,7 @@ use Models\Tamago;
 use Models\User;
 use Database\Database;
 use Faker\Factory;
+use DateTime;
 
 class TamagoService {
 
@@ -41,7 +42,7 @@ class TamagoService {
     private static function hydrate(array $data): Tamago {
         $tamago = new Tamago();
         foreach ($data as $key => $value) {
-            $tamago->$key = $value; // utilisation du __set
+            $tamago->$key = $value;
         }
         return $tamago;
     }
@@ -83,7 +84,6 @@ class TamagoService {
         ]);
     }
 
-    // Helper générique
     private static function applyAction(int $tamagoId, string $username, callable $callback): void {
         $user = User::getByName($username);
         if (!$user) return;
@@ -92,6 +92,49 @@ class TamagoService {
         if (!$tamago || $tamago->user_id !== $user->id) return;
 
         $updates = $callback($tamago);
+
+        $updates = self::processState($tamago, $updates);
+
         $tamago->updateAttributes($updates);
+    }
+
+    private static function processState(Tamago $tamago, array $updates): array {
+        $niveau = $tamago->niveaux;
+        $actions = $tamago->actions;
+        $etat = $tamago->etat;
+        $died_at = $tamago->died_at;
+
+        $faim = $updates['faim'] ?? $tamago->faim;
+        $soif = $updates['soif'] ?? $tamago->soif;
+        $sommeil = $updates['sommeil'] ?? $tamago->sommeil;
+        $ennui = $updates['ennui'] ?? $tamago->ennui;
+
+        $faim = max(0, $faim);
+        $soif = max(0, $soif);
+        $sommeil = max(0, $sommeil);
+        $ennui = max(0, $ennui);
+
+        if ($actions >= 9) {
+            $actions = 0;
+            $niveau++;
+        } else {
+            $actions++;
+        }
+
+        if ($faim === 0 || $soif === 0 || $sommeil === 0 || $ennui === 0) {
+            $etat = "mort";
+            $died_at = (new DateTime())->format('Y-m-d H:i:s');
+        }
+
+        return array_merge($updates, [
+            'faim'     => $faim,
+            'soif'     => $soif,
+            'sommeil'  => $sommeil,
+            'ennui'    => $ennui,
+            'actions'  => $actions,
+            'niveaux'  => $niveau,
+            'etat'     => $etat,
+            'died_at'  => $died_at
+        ]);
     }
 }

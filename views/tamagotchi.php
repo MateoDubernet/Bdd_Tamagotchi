@@ -16,7 +16,7 @@ include __DIR__ . '/../views/layouts/header.php';
     <div><p id="username">Welcome, <?= htmlspecialchars($username) ?>!</p></div>
 
     <div>
-        <a href="create_tamagotchi.php?username=<?= urlencode($username) ?>">
+        <a href="../controllers/create_tamagotchi.php?username=<?= urlencode($username) ?>">
             <img src="../assets/creer_tamagochi.png" id="bouton-creer" alt="Créer un Tamagotchi">
         </a>
     </div>

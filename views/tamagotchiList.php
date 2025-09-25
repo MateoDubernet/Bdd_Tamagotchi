@@ -22,7 +22,7 @@ $pageTitle = "Mes Tamagotchis";
 include __DIR__ . '/../views/layouts/header.php';
 ?>
 
-<div><a href="../controllers/tamagotchi.php?username=<?= urlencode($username) ?>">Home</a></div>
+<div class="home-link-section"><a class="home-link" href="./tamagotchi.php?username=<?= urlencode($username) ?>">Home</a></div>
 <div class="tamago-container">
     <?php if (!empty($tamagos)): ?>
         <?php foreach ($tamagos as $tamago): ?>
@@ -37,8 +37,8 @@ include __DIR__ . '/../views/layouts/header.php';
         <p style="text-align:center">Aucun Tamagotchi vivant actuellement.</p>
     <?php endif; ?>
 </div>
-<div>
-    <a href="tamagotchiGraveyard.php?username=<?= urlencode($username) ?>">Visiter le cimetière</a>
+<div class="graveyard-link-section">
+    <a class="graveyard-link" href="tamagotchiGraveyard.php?username=<?= urlencode($username) ?>">Visiter le cimetière</a>
 </div>
 
 <?php include __DIR__ . '/../views/layouts/footer.php'; ?>

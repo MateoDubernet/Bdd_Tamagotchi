@@ -156,3 +156,18 @@
   box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
   outline: 0;
 }
+
+.home-link-section, .graveyard-link-section, .tamagotchiList-link-section {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.home-link-section {
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+}
+
+.graveyard-link-section, .tamagotchiList-link-section {
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+}
