@@ -1,39 +1,40 @@
 # Tamagotchi - Gestion et Interactions
 
-Ceci est un projet réaliser en groupe pour un devoir scolaire, il s'agit d'une implémentation en PHP d'un système de **Tamagotchi virtuel**.  
+## Contexte
+
+### Description
+Ceci est un projet réaliser en groupe dans le cadre d'un devoir maison, il s'agit d'une implémentation en PHP d'un système de **Tamagotchi virtuel**.  
 Chaque utilisateur peut créer, gérer et interagir avec son Tamagotchi qui possède différents états.
 
 ---
 
-## Installation
-1. **Cloner le projet :**
+## Installation et Lancement
+
+### 1. Cloner le projet
 ```bash
-   git clone https://github.com/ton-projet/tamagotchi.git
-   cd tamagotchi
+   git clone <url-du-repo>
+   cd <dossier-projet>
 ```
-2. **Installer les dépendances:**
+
+### 2. Installer les dépendances
 ```bash
     composer install
 ```
 
----
+### 3. Configuration
+Dans le fichier database/database.php ($config) changer les informations de connexions à la base de données avec celles adapter
 
-## Configuration
-Dans le fichier database/database.php ($config) changer les informations de connexions à la base de données avec celles adapter.
-
----
-
-## Lancement
-Lancer le projet avec la commande:
+### 4. Lancement
 ```bash
     php -S localhost:8000 -t .
 ```
 
-Une fois le projet lancer, entrer dans le navigateur l'adresse suivante: localhost:8000
+Une fois le projet lancer, entrer dans le navigateur l'adresse suivante : localhost:8000
 
 ---
 
-## Utilisation
+## Fonctionnalités
+
 ### 1. Authentification
 Un utilisateur doit s’authentifier pour pouvoir créer ou interagir avec un Tamagotchi.
 
