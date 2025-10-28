@@ -47,9 +47,3 @@ Les données sont stockées dans la table users.
 - Un utilisateur peut créer un tamagotchi en appuyant sur "créer un tamago", cela va créer automatiquement un tamago et rediriger l'utilisateur vers la liste de c'est tamagotchi.
 - Après 9 actions, un Tamagotchi monte de 1 niveau et le compteur repart à zéro.
 - Si un besoin tombe à 0 (faim, soif, sommeil, ennui), le Tamagotchi passe en état mort.
-
----
-
-## Notes
-- Le code utilise PDO avec des requêtes préparées pour plus de sécurité.
-- Le système est pensé pour être facilement extensible (ajout d’autres actions possibles).
