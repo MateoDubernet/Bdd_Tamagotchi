@@ -8,6 +8,13 @@ Chaque utilisateur peut créer, gérer et interagir avec son Tamagotchi qui poss
 
 ---
 
+## Prérequis
+
+- Php
+- Composer
+
+---
+
 ## Installation et Lancement
 
 ### 1. Cloner le projet
